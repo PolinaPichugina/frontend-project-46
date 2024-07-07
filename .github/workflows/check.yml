@@ -14,10 +14,11 @@ jobs:
       - run: make lint
       - run: make test
       
-      - name: Test & publish code coverage
-        uses: paambaati/codeclimate-action@v5.0.0
-        env:
-          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTED_ID }}
+      - name: publish code coverage
+        uses: paambaati/codeclimate-action@v3.0.0
+        env: 
+          CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
+          JACOCO_SOURCE_PATH: app/src/main/java
         with:
           coverageCommand: make test-coverage
-          debug: true
+          coverageLocations: ${{github.workspace}}/app/build/reports/jacoco/test/jacocoTestReport.xml:jacoco
