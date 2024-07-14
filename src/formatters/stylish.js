@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-const replacer = '    ';
+const replacer = '  ';
 
 const bracketIntent = (replacer, depth) => replacer.repeat(depth - 1);
 
