@@ -1,13 +1,11 @@
-import { readFileSync } from 'fs';
-import { resolve, extname, dirname } from 'path';
 import { fileURLToPath } from 'url';
+import {join, dirname } from 'path';
+import { readFileSync } from 'fs';
 
-const readFile = (file) => {
-    const __filename = fileURLToPath(import.meta.url);
-    const __dirname = dirname(__filename);
-    const filepath = resolve(__dirname,  '__fixtures__', file);
-    return readFileSync(filepath, 'utf8');
-};
-const getFormat = (file) => extname(file).slice(1);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const getFixtureFilepath = (filepath) => join(__dirname,  '__fixtures__', filepath);
 
-export {readFile, getFormat};
+const readFile = (filepath) => readFileSync(getFixtureFilepath(filepath), 'utf-8');
+
+export {readFile, getFixtureFilepath};
