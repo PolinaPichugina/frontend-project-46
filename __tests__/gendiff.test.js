@@ -1,5 +1,5 @@
-import {readFile}  from '../utils.js';
-import genDiff from '../AST';
+import {readFile}  from '../src/utils.js';
+import genDiff from '../src/index.js';
 
 test('gendiff', () => {
     expect(genDiff('file1.json', 'file2.json')).toBe(readFile('result-stylish.txt'));
