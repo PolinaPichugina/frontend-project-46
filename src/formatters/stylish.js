@@ -1,13 +1,14 @@
 import _ from 'lodash';
 
-const replacer = '    ';
-
-const bracketIntent = (replacer, depth) => ' '.repeat((depth * 4) - 4);
+const replacer = ' ';
+const spaceCount = 4;
+const leftTab = 2;
+const bracketIntent = (replacer, depth) => replacer.repeat((depth * spaceCount) - spaceCount);
 
 const getStr = (lines, depth) => ['{', ...lines, `${bracketIntent(replacer, depth)}}`].join('\n');
 
 const getValue = (value, depth) => {
-    const ident = ' '.repeat((4 * depth));
+    const ident = replacer.repeat((spaceCount * depth));
     if (!_.isObject(value)) {
         return value;
     } 
@@ -19,7 +20,7 @@ const getValue = (value, depth) => {
 
 const makeStylishDiff = (array) => {
 const buildTree = (array, depth) => {
-    const ident = ' '.repeat((4 * depth) - 2);
+    const ident = replacer.repeat((spaceCount * depth) - leftTab);
     const result = array.flatMap((line) => {
         switch (line.status) {
             case 'added': return `${ident}+ ${line.key}: ${getValue(line.value, depth + 1)}`;

@@ -12,9 +12,9 @@ const makePlainDiff = (diff) => {
             const path = [...key, line.key];
           switch (line.status) {
             case 'nested': return iter(line.value, path);
-            case 'added': return `Property ${path.join('.')} was added with value: ${getValue(line.value)}`;
-            case 'deleted': return `Property ${path.join('.')} was removed`;
-            case 'changed': return `Property ${path.join('.')} was updated. From ${getValue(line.value1)} to ${getValue(line.value2)}`;
+            case 'added': return `Property '${path.join('.')}' was added with value: ${getValue(line.value)}`;
+            case 'deleted': return `Property '${path.join('.')}' was removed`;
+            case 'changed': return `Property '${path.join('.')}' was updated. From ${getValue(line.value1)} to ${getValue(line.value2)}`;
             case 'unchanged': return null;
             default: throw Error('Uncorrect data');
           };
