@@ -10,7 +10,7 @@ const getStr = (lines, depth) => ['{', ...lines, `${bracketIntent(depth)}}`].joi
 const getValue = (data, depth) => {
   const ident = replacer.repeat((spaceCount * depth));
   if (!_.isObject(data)) {
-    return value;
+    return data;
   }
   const entries = Object.entries(data);
   const lines = entries.map(([key, value]) => `${ident}${key}: ${getValue(value, depth + 1)}`);
