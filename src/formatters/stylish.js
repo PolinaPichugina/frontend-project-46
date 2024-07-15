@@ -3,9 +3,9 @@ import _ from 'lodash';
 const replacer = ' ';
 const spaceCount = 4;
 const leftTab = 2;
-const bracketIntent = (replacer, depth) => replacer.repeat((depth * spaceCount) - spaceCount);
+const bracketIntent = (depth) => replacer.repeat((depth * spaceCount) - spaceCount);
 
-const getStr = (lines, depth) => ['{', ...lines, `${bracketIntent(replacer, depth)}}`].join('\n');
+const getStr = (lines, depth) => ['{', ...lines, `${bracketIntent(depth)}}`].join('\n');
 
 const getValue = (value, depth) => {
   const ident = replacer.repeat((spaceCount * depth));
