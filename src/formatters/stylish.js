@@ -7,7 +7,7 @@ const bracketIntent = (replacer, depth) => replacer.repeat(depth);
 const getStr = (lines, depth) => ['{', ...lines, `${bracketIntent(replacer, depth)}}`].join('\n');
 
 const getValue = (value, depth) => {
-    const ident = replacer.repeat(depth)
+    const ident = ' '.repeat(4 * depth - 2);
     if (!_.isObject(value)) {
         return value;
     } 
@@ -19,7 +19,7 @@ const getValue = (value, depth) => {
 
 const makeStylishDiff = (array) => {
 const buildTree = (array, depth) => {
-    const ident = replacer.repeat(depth);
+    const ident = ' '.repeat(4 * depth - 2);
     const result = array.flatMap((line) => {
         switch (line.status) {
             case 'added': return `${ident}+ ${line.key}: ${getValue(line.value, depth + 1)}`;
