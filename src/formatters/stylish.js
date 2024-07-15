@@ -2,12 +2,12 @@ import _ from 'lodash';
 
 const replacer = '    ';
 
-const bracketIntent = (replacer, depth) => replacer.repeat(depth);
+const bracketIntent = (replacer, depth) => ' '.repeat((depth * 4) - 4);
 
 const getStr = (lines, depth) => ['{', ...lines, `${bracketIntent(replacer, depth)}}`].join('\n');
 
 const getValue = (value, depth) => {
-    const ident = ' '.repeat((4 * depth) - 2);
+    const ident = ' '.repeat((4 * depth));
     if (!_.isObject(value)) {
         return value;
     } 
