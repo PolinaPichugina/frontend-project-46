@@ -7,18 +7,18 @@ const bracketIntent = (depth) => replacer.repeat((depth * spaceCount) - spaceCou
 
 const getStr = (lines, depth) => ['{', ...lines, `${bracketIntent(depth)}}`].join('\n');
 
-const getValue = (value, depth) => {
+const getValue = (data, depth) => {
   const ident = replacer.repeat((spaceCount * depth));
-  if (!_.isObject(value)) {
+  if (!_.isObject(data)) {
     return value;
   }
-  const entries = Object.entries(value);
+  const entries = Object.entries(data);
   const lines = entries.map(([key, value]) => `${ident}${key}: ${getValue(value, depth + 1)}`);
 
   return getStr(lines, depth);
 };
 
-const makeStylishDiff = (array) => {
+const makeStylishDiff = (tree) => {
   const buildTree = (array, depth) => {
     const ident = replacer.repeat((spaceCount * depth) - leftTab);
     const result = array.flatMap((line) => {
@@ -31,11 +31,11 @@ const makeStylishDiff = (array) => {
         ];
         case 'unchanged': return `${ident}  ${line.key}: ${getValue(line.value, depth + 1)}`;
         case 'nested': return `${ident}  ${line.key}: ${buildTree(line.value, depth + 1)}`;
-      }
-    });
+        default: throw new Error (`'${line.status}' status is uncorrect`);
+  } });
     return getStr(result, depth);
-  };
-  return buildTree(array, 1);
+};
+  return buildTree(tree, 1);
 };
 
 export default makeStylishDiff;

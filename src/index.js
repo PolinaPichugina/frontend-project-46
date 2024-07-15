@@ -3,8 +3,8 @@ import parse from './parsers.js';
 import formatter from './formatters/index.js';
 
 const genDiff = (filepath1, filepath2, format = 'stylish') => {
-  const file1 = parse(filepath1);
-  const file2 = parse(filepath2);
+  const data1 = parse(filepath1);
+  const data2 = parse(filepath2);
 
   const statusTree = (file1, file2) => {
     const keys1 = Object.keys(file1);
@@ -29,6 +29,6 @@ const genDiff = (filepath1, filepath2, format = 'stylish') => {
     });
     return tree;
   };
-  return formatter(statusTree(file1, file2), format);
+  return formatter(statusTree(data1, data2), format);
 };
 export default genDiff;
