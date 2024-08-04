@@ -1,14 +1,10 @@
-import { extname } from 'path';
-
 import yaml from 'js-yaml';
-import { readFile } from './utils.js';
 
-const parse = (filepath) => {
-  const format = extname(filepath).slice(1);
+const parse = (data, format) => {
   switch (format) {
-    case 'json': return JSON.parse(readFile(filepath));
-    case 'yml': return yaml.load(readFile(filepath));
-    case 'yaml': return yaml.load(readFile(filepath));
+    case 'json': return JSON.parse(data);
+    case 'yml': return yaml.load(data);
+    case 'yaml': return yaml.load(data);
     default: throw new Error(`Invalid format: ${format}`);
   }
 };

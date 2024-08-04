@@ -30,7 +30,7 @@ const makeStylishDiff = (tree) => {
           `${ident}+ ${line.key}: ${getValue(line.value2, depth + 1)}`,
         ];
         case 'unchanged': return `${ident}  ${line.key}: ${getValue(line.value, depth + 1)}`;
-        case 'nested': return `${ident}  ${line.key}: ${buildTree(line.value, depth + 1)}`;
+        case 'nested': return `${ident}  ${line.key}: ${buildTree(line.children, depth + 1)}`;
         default: throw new Error(`'${line.status}' status is uncorrect`);
       }
     });

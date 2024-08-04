@@ -11,7 +11,7 @@ const makePlainDiff = (diff) => {
     const lines = node.map((line) => {
       const path = [...key, line.key];
       switch (line.status) {
-        case 'nested': return iter(line.value, path);
+        case 'nested': return iter(line.children, path);
         case 'added': return `Property '${path.join('.')}' was added with value: ${getValue(line.value)}`;
         case 'deleted': return `Property '${path.join('.')}' was removed`;
         case 'changed': return `Property '${path.join('.')}' was updated. From ${getValue(line.value1)} to ${getValue(line.value2)}`;
