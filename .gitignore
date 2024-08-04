@@ -2,4 +2,5 @@
 coverage
 genDiff1.cast
 genDiff2.cast
-DS_Store
+.DS_Store
+src/.DS_Store
